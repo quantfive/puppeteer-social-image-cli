@@ -10,7 +10,7 @@ export default async function image(
   title,
   subtitle = null,
   imageUrl = null,
-  template = "article" // article, basic, or fiftyfifty
+  template = "fiftyfifty" // article, basic, or fiftyfifty
 ) {
   const fileName = buildFileName(title);
   const filePath = "images/";
@@ -47,7 +47,7 @@ export default async function image(
     },
   };
 
-  const templateParams = templates[template];
+  const templateParams = templates[template] || templates["fiftyfifty"];
 
   if (subtitle) {
     templateParams["subtitle"] = subtitle; // text below title
