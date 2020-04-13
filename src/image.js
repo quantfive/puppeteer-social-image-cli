@@ -2,6 +2,7 @@ import fs from 'fs';
 import puppeteer from 'puppeteer';
 import renderSocialImage from 'puppeteer-social-image';
 
+const COMPANY_NAME = "ResearchHub";
 const LOGO_URL = "https://www.researchhub.com/static/ResearchHubLogo.png";
 
 let browser;
@@ -10,7 +11,8 @@ export default async function image(
   title,
   subtitle = null,
   imageUrl = null,
-  template = "fiftyfifty" // article, basic, or fiftyfifty
+  template = "fiftyfifty", // article, basic, or fiftyfifty
+  size = "twitter",
 ) {
   const fileName = buildFileName(title);
   const filePath = "images/";
@@ -24,7 +26,7 @@ export default async function image(
     article: {
       backgroundImageOverlay: true, // dark background overlay
       color: "white", // text color
-      eyebrow: "March 31", // text above title
+      eyebrow: COMPANY_NAME, // text above title
       googleFont: "Lato",
       title,
       watermark: "www.researchhub.com" // footer text,
@@ -32,7 +34,7 @@ export default async function image(
     basic: {
       backgroundImageOverlay: true, // dark background overlay
       color: "white", // text color
-      eyebrow: "March 31", // text above title
+      eyebrow: COMPANY_NAME, // text above title
       googleFont: "Lato",
       logo: LOGO_URL,
       title,
@@ -60,7 +62,7 @@ export default async function image(
   const body = await renderSocialImage({
     template,
     templateParams,
-    size: "twitter",
+    size, // twitter or facebook
     browser,
   });
 

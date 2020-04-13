@@ -7,7 +7,8 @@ program
   .option("-s, --subtitle <subtitle>", "subtitle")
   .option("-u, --imageurl <imageurl>", "metatag image url")
   .option("-t, --template <template>", "template")
-  .action(async function(title, {subtitle, imageurl, template}) {
-    await image(title, subtitle, imageurl, template);
+  .option("-z, --size <size>", "size")
+  .action(async function(title, {subtitle, imageurl, template, size}) {
+    await image(title, subtitle, imageurl, template, size);
   })
   .parse(process.argv);
